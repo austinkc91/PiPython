@@ -53,11 +53,14 @@ def delete(filename):
 @app.route('/run', methods=['POST'])
 def run():
     global script_process
-    filename = request.form['filename']
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
     try:
-        script_process = subprocess.Popen(['python', filepath])
-        flash('Script started successfully!', 'success')
+        if 'filename' in request.form:
+            filename = request.form['filename']
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            script_process = subprocess.Popen(['python', filepath])
+            flash('Script started successfully!', 'success')
+        else:
+            flash('Filename field missing in the request!', 'error')
     except Exception as e:
         flash(f'Error starting script: {str(e)}', 'error')
     return redirect(url_for('index'))

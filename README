@@ -1,0 +1,47 @@
+
+Install Required Dependencies:
+
+ - Copy the code from the requirments txt
+ - With the virtual environment active, you can install the required packages,using pip.
+ 
+Running the Code:
+ 
+ - Copy code: CD "FILE DIRECTORY OF SCRIPT FOLDER"
+ - Repalce FILE DIRECTORY with correct directory of the app.py.
+ - Copy code: sudo python app.py
+
+
+Quick Run:
+
+source venv/bin/activate
+cd /home/akc/Downloads/PiPython-main
+
+
+
+
+OPTIONAL (Dependencies must be install outside of the Env)
+
+Create a Virtual Environment:
+
+ - Open a terminal and navigate to your project directory. Then, run the following command to create a virtual environment (replace venv with the name you prefer for your virtual environment):
+
+ - Copy code: python -m venv venv
+ - This command will create a new virtual environment named venv in your project directory.
+
+
+
+
+
+
+Activate the Virtual Environment:
+
+ - Activate the virtual environment by running the appropriate command based on your operating system:
+
+On Windows:
+ - Copy code: venv\activate
+ 
+On Linux/macOS:
+
+ - Copy code: source venv/bin/activate
+ - Once activated, your terminal prompt should change to indicate that you are now working within the virtual environment.
+
