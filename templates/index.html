@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PiPython</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #181818;
+            color: #e1e1e1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1.title {
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: #202020;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        input[type="submit"], select {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #303030;
+        }
+
+        input[type="submit"] {
+            background-color: #007BFF;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .messages {
+            width: 60%;
+            margin: 20px auto;
+            text-align: center;
+            border-radius: 4px;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        #flash-messages {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">PiPython</h1>
+
+        <!-- Flash messages -->
+        <div id="flash-messages">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="messages">
+                        {% for category, message in messages %}
+                            <li class="{{ category }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+        </div>
+
+        <!-- Upload form -->
+        <form action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".py">
+            <input type="submit" value="Upload">
+        </form>
+
+        <!-- Run and Stop forms -->
+        <form action="{{ url_for('run') }}" method="post">
+            <select name="filename" id="fileDropdown">
+                {% for file in files %}
+                    {% if file.endswith('.py') %}
+                        <option value="{{ file }}">{{ file }}</option>
+                    {% endif %}
+                {% endfor %}
+            </select>
+            <input type="submit" value="Run">
+            <input type="submit" formaction="{{ url_for('stop') }}" value="Stop">
+        </form>
+    </div>
+    <script>
+        if (window.addEventListener) {
+            document.getElementById("fileDropdown").addEventListener("change", function() {
+                var selectedFile = this.value;
+            });
+        } else {
+            alert("JavaScript event listeners are not supported in your browser. Deleting might not work as expected.");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: #181818;
+  color: #e1e1e1;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: center; /* This will vertically center the content */
+}
+
+.container {
+  max-width: 800px;
+  width: 90%; /* Adjust width based on preference */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px; /* Provides space between child elements */
+}
+
+h1.title {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: #202020;
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+input[type="submit"], select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #303030;
+  color: #e1e1e1;
+}
+
+input[type="submit"] {
+  background-color: #007BFF;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.messages {
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+#flash-messages {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000; /* Make sure flash messages are always on top */
+}
+
+.actions {
+  display: flex;
+  gap: 10px; /* Space between Run and Stop buttons */
+}
